@@ -3,11 +3,10 @@ ALIGNMENT = "center"
 FONT = ("SUMMER", 24, "normal")
 
 
-class Scoreboard(Turtle,):
+class Scoreboard(Turtle):
 
-    def __init__(self,screen):
+    def __init__(self,):
         super().__init__()
-        self.screen = screen
         self.score = 0
         self.color("white")
         self.penup()

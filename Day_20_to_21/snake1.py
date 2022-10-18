@@ -1,5 +1,8 @@
+import time
 from turtle import Turtle
+
 STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
+COLORS = ["red", "blue", "orange"]
 MOVE_DISTANCE = 20
 UP = 90
 DOWN = 270
@@ -34,6 +37,20 @@ class Snake:
             new_y = self.segments[seg_num - 1].ycor()
             self.segments[seg_num].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
+
+    def blink_(self):
+        for j in range(3):
+            for i in self.segments:
+                i.hideturtle()
+            self.head.screen.update()
+            time.sleep(0.01)
+            for i in self.segments:
+                i.color(COLORS[j % 3])
+                i.showturtle()
+            self.head.screen.update()
+            time.sleep(0.03)
+        for i in self.segments:
+            i.color("green")
 
     def up(self):
         if self.head.heading() != DOWN:

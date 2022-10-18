@@ -10,9 +10,10 @@ screen.bgcolor("black")
 screen.title("My Snake Game")
 screen.tracer(0)
 
+scoreboard = Scoreboard(screen)
 snake = Snake()
 food = Food()
-scoreboard = Scoreboard(screen)
+
 
 screen.listen()
 screen.onkey(snake.up, "w")
@@ -28,6 +29,7 @@ while game_is_on:
 
     if snake.head.distance(food) < 15:
         food.refresh()
+        snake.blink_()
         snake.extend()
         scoreboard.increase_score()
 
