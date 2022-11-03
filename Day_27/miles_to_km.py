@@ -1,4 +1,4 @@
-from tkinter import *
+from t_kinter import *
 scrn=Tk()
 scrn.title("Miles to KM")
 scrn.minsize(width=100,height=100)
