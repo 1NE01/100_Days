@@ -7,9 +7,9 @@ RED = "#e7305b"
 GREEN = "#9bdeac"
 YELLOW = "#f7f5dd"
 FONT_NAME = "Courier"
-WORK_MIN = 25
-SHORT_BREAK_MIN = 5
-LONG_BREAK_MIN = 20
+WORK_SEC = 25* 60
+SHORT_BREAK_SEC = 5* 60
+LONG_BREAK_SEC =25 * 60
 reps = 0
 timer1 = None
 timer_running = False
@@ -32,28 +32,35 @@ def reset_button_clicked():
 
 def start_button_clicked():
     global timer_running
+    global reps
     if not timer_running:
 
-        global reps
-        reps += 1
-        work_sec = WORK_MIN * 60
-        short_break = SHORT_BREAK_MIN * 60
-        long_break = LONG_BREAK_MIN * 60
-        if reps % 8 == 0:
-            count_down(long_break)
-            timer.config(text="Break", fg=RED)
-        elif reps % 2 == 0:
-            count_down(short_break)
-            timer.config(text="Break", fg=PINK)
+
+
+
+
+
+        if reps ==7:
+            status.config(text="✔✔✔✔")
+            reps = -1
+            time2=LONG_BREAK_SEC
+            timer.config(text="Long Break", fg=RED)
+        elif not reps % 2 == 0:
+            time2=SHORT_BREAK_SEC
+            timer.config(text="Short Break", fg=PINK)
         else:
-            count_down(work_sec)
+            time2=WORK_SEC
             timer.config(text="Work", fg=GREEN)
+        reps += 1
+        count_down(time2)
+
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
 def count_down(count):
     global timer1
     global timer_running
+    global reps
 
     if count > 0:
         timer_running = True
@@ -64,12 +71,10 @@ def count_down(count):
 
     else:
         timer_running = False
+
+        if not reps == 7:
+            status.config(text="{0:✔^{1}}".format("", int(reps/ 2)))
         start_button_clicked()
-        mark = ""
-        work_session = math.floor(reps / 2)
-        for i in range(work_session):
-            mark += "✔"
-            status.config(text=mark)
 
 
 # ---------------------------- UI SETUP ------------------------------- #
