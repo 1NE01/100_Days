@@ -52,6 +52,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\Day_31\data\words_to_learn.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Day_32\birthdays.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
